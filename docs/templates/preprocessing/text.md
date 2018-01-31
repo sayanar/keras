@@ -44,11 +44,11 @@ This is a wrapper to the `hashing_trick` function using `hash` as the hashing fu
          basic punctuation, tabs, and newlines.
     - __lower__: boolean. Whether to set the text to lowercase.
     - __split__: str. Separator for word splitting.
-    
+
 ## hashing_trick
 
 ```python
-keras.preprocessing.text.hashing_trick(text, 
+keras.preprocessing.text.hashing_trick(text,
                                        n,
                                        hash_function=None,
                                        filters='!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n',
@@ -89,19 +89,20 @@ Class for vectorizing texts, or/and turning texts into sequences (=list of word 
 - __Arguments__: Same as `text_to_word_sequence` above.
     - __num_words__: None or int. Maximum number of words to work with (if set, tokenization will be restricted to the top num_words most common words in the dataset).
     - __char_level__: if True, every character will be treated as a token.
+    - __oov_token__: if given, it will be added to word_index and used to replace out-of-vocabulary words during text_to_sequence calls
 
 - __Methods__:
 
-    - __fit_on_texts(texts)__: 
+    - __fit_on_texts(texts)__:
         - __Arguments__:
             - __texts__: list of texts to train on.
 
     - __texts_to_sequences(texts)__
-        - __Arguments__: 
+        - __Arguments__:
             - __texts__: list of texts to turn to sequences.
         - __Return__: list of sequences (one per text input).
 
-    - __texts_to_sequences_generator(texts)__: generator version of the above. 
+    - __texts_to_sequences_generator(texts)__: generator version of the above.
         - __Return__: yield one sequence per input text.
 
     - __texts_to_matrix(texts)__:
@@ -110,9 +111,9 @@ Class for vectorizing texts, or/and turning texts into sequences (=list of word 
             - __texts__: list of texts to vectorize.
             - __mode__: one of "binary", "count", "tfidf", "freq" (default: "binary").
 
-    - __fit_on_sequences(sequences)__: 
+    - __fit_on_sequences(sequences)__:
         - __Arguments__:
-            - __sequences__: list of sequences to train on. 
+            - __sequences__: list of sequences to train on.
 
     - __sequences_to_matrix(sequences)__:
         - __Return__: numpy array of shape `(len(sequences), num_words)`.
@@ -121,7 +122,7 @@ Class for vectorizing texts, or/and turning texts into sequences (=list of word 
             - __mode__: one of "binary", "count", "tfidf", "freq" (default: "binary").
 
 - __Attributes__:
-    - __word_counts__: dictionary mapping words (str) to the number of times they appeared on during fit. Only set after fit_on_texts was called. 
+    - __word_counts__: dictionary mapping words (str) to the number of times they appeared on during fit. Only set after fit_on_texts was called.
     - __word_docs__: dictionary mapping words (str) to the number of documents/texts they appeared on during fit. Only set after fit_on_texts was called.
     - __word_index__: dictionary mapping words (str) to their rank/index (int). Only set after fit_on_texts was called.
     - __document_count__: int. Number of documents (texts/sequences) the tokenizer was trained on. Only set after fit_on_texts or fit_on_sequences was called.
